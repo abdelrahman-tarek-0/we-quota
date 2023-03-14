@@ -17,11 +17,11 @@ module.exports = async () => {
       customerName = session?.customerName
    } else {
       console.log('logging')
-      const res = await login(userAuth.number, userAuth.password)
-      token = res.token
-      customerId = res.customerId
-      customerName = res.customerName
-      userAuth.setSession(token, customerId, customerName)
+      const user = (await userAuth.login(userAuth.number, userAuth.password)).getSession()
+      
+      token = user.token
+      customerId = user.customerId
+      customerName = user.customerName
    }
 
    const payload = {
