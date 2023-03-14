@@ -7,7 +7,7 @@
   "rules": {
     "prettier/prettier": "error",
     "spaced-comment": "off",
-    "no-console": "warn",
+    "no-console": [0],
     "consistent-return": "off",
     "func-names": "off",
     "object-shorthand": "off",
