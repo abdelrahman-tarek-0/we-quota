@@ -2,28 +2,10 @@ const { login } = require('we-te-login')
 const { userAuth } = require('../../config/config')
 
 module.exports = async () => {
-   // let token
-   // let customerId
-   // let customerName
-   // const session = userAuth.checkSession()
-   // if (session) {
-   //    token = session?.token
-   //    customerId = session?.customerId
-   //    customerName = session?.customerName
-   // } else {
-   //    console.log('logging')
-   //    const user = (
-   //       await userAuth.login(userAuth.number, userAuth.password)
-   //    ).getSession()
-
-   //    token = user.token
-   //    customerId = user.customerId
-   //    customerName = user.customerName
-   // }
-
+   const session = userAuth.checkSession() 
    const { token, customerId, customerName } = session
       ? session
-      : await userAuth.login(userAuth.number, userAuth.password).getSession()
+      : (await userAuth.login(userAuth.number, userAuth.password)).getSession()
 
    const payload = {
       body: {},
