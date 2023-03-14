@@ -1,4 +1,4 @@
-const { userAuth } = require('../../config/config')
+const userAuth = require('../../database/users.model')
 const constructor = require('../utils/reqConstructor')
 
 module.exports = async () => {

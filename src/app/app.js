@@ -1,7 +1,7 @@
 const login = require('./modules/login')
 const mainPage = require('./modules/mainPage')
 
-const { userAuth } = require('../config/config')
+const userAuth = require('../database/users.model')
 
 const app = () =>
    login()
