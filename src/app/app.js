@@ -15,6 +15,7 @@ if (!userAuth.number || !userAuth.password) {
    userAuth.login().then((user) => {
       console.log(`thanks ${user.getSession().customerName} for login in`)
    })
+   app()
 } else {
    app()
 }
