@@ -2,8 +2,8 @@ const { login } = require("we-te-login");
 const { userAuth } = require("../../config/config");
 
 module.exports = async () => {
-  const res = await login(userAuth.password, userAuth.number);
-
+ try {
+  const res = await login(userAuth.number,userAuth.password);
   const {token,customerId,customerName} = res;
 
   const payload = {
@@ -25,4 +25,7 @@ module.exports = async () => {
   };
   
   return {headers,payload,customerName}
+ } catch (error) {
+  throw error;
+ }
 };

@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/abdelrahman-tarek-0/we-quota#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "we-te-login": "^1.5.4"
   }
 }
