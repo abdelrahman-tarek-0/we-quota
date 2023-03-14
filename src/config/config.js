@@ -16,8 +16,8 @@ const { password, number } = db.read()
 const userAuth = {
    number,
    password,
-   setSession: () => db.read().session,
-   getSession: (token, customerId, customerName) => {
+   getSession: () => db.read().session,
+   setSession: (token, customerId, customerName) => {
       const iat = Math.floor(Date.now() / 1000)
       const exp = Math.floor(Date.now() / 1000) + 3.5 * 60 * 60
       const { password: pswd } = userAuth
