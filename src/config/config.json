@@ -1,5 +1,11 @@
 {
-    "number":"",
-    "password":"",
-    "session":{}
+   "password": "",
+   "number": "",
+   "session": {
+      "customerId": "",
+      "customerName": "",
+      "iat": 1678819849,
+      "exp": 1678832449,
+      "token": ""
+   }
 }
