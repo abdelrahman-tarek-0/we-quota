@@ -1,2 +1,6 @@
 node_modules
-/config/config.json
+
+# ignore file in config called config.json
+/src/config/config.json
+
+# ignore all files in config folder
