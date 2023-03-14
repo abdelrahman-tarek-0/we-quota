@@ -49,7 +49,7 @@ const userAuth = {
    login: async function (num, pswd) {
       let data = {}
       if (num && pswd) {
-         data = await login(num, pswd)
+         data = await login(num, pswd,{skipEncryption:true})
       } else {
          data = await loginWeb()
       }
