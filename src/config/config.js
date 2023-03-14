@@ -29,13 +29,28 @@ const userAuth = {
     number,
     password
 }
+
 const getSession = ()=>{
   return db.read().session
 }
 const setSession = (token,customerId,customerName)=>{
   const iat = Math.floor(Date.now()/1000)  
   const exp = Math.floor(Date.now()/1000) + 3.5*60*60 
-  
+  const password = userAuth.password
+  const number = userAuth.number
+  console.log(userAuth.browserPath);
+  db.write({
+    password,
+    number,
+    browserPath:userAuth.browserPath,
+    session:{
+      customerId,
+      customerName,
+      iat,
+      exp,
+      token
+    }
+  })
 }
 // your_password
 // 022123456
