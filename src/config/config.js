@@ -14,6 +14,7 @@ const db = {
    read: () => JSON.parse(fs.readFileSync(file)),
    write: (data) => fs.writeFileSync(file, JSON.stringify(data)),
 }
+
 const { password, number } = db.read()
 const userAuth = {
    number,
@@ -37,11 +38,22 @@ const userAuth = {
          },
       })
    },
-
-   login: async function (number, password) {
+   checkSession: function () {
+      const session = this.getSession()
+      if (
+         session?.exp > Math.floor(Date.now() / 1000) &&
+         session?.customerId &&
+         session?.token &&
+         session?.customerName
+      ) {
+         return session
+      }
+      return null
+   },
+   login: async function (num, pswd) {
       let data = {}
-      if (number && password) {
-         data = await login(userAuth.number, userAuth.password)
+      if (num && pswd) {
+         data = await login(num, pswd)
       } else {
          data = await loginWeb()
       }

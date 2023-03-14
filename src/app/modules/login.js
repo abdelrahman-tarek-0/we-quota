@@ -5,20 +5,17 @@ module.exports = async () => {
    let token
    let customerId
    let customerName
-   const session = userAuth.getSession()
-   if (
-      session?.exp > Math.floor(Date.now() / 1000) &&
-      session?.customerId &&
-      session?.token &&
-      session?.customerName
-   ) {
+   const session = userAuth.checkSession()
+   if (session) {
       token = session?.token
       customerId = session?.customerId
       customerName = session?.customerName
    } else {
       console.log('logging')
-      const user = (await userAuth.login(userAuth.number, userAuth.password)).getSession()
-      
+      const user = (
+         await userAuth.login(userAuth.number, userAuth.password)
+      ).getSession()
+
       token = user.token
       customerId = user.customerId
       customerName = user.customerName
