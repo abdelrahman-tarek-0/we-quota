@@ -1,11 +1,11 @@
 const { userAuth } = require('../../config/config')
-const constructor = require("../utils/reqConstructor")
+const constructor = require('../utils/reqConstructor')
 
 module.exports = async () => {
    const session = userAuth.checkSession()
-   const { token, customerId, customerName } = session
-      ? session
-      : (await userAuth.login(userAuth.number, userAuth.password)).getSession()
+   const { token, customerId, customerName } =
+      session ||
+      (await userAuth.login(userAuth.number, userAuth.password)).getSession()
 
    return {
       headers: constructor.headers(token),

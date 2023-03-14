@@ -14,20 +14,16 @@ const db = {
    read: () => JSON.parse(fs.readFileSync(file)),
    write: (data) => fs.writeFileSync(file, JSON.stringify(data)),
 }
-
-const { password, number } = db.read()
 const userAuth = {
-   number,
-   password,
+   number: db.read().number,
+   password: db.read().password,
    getSession: () => db.read().session,
-   setSession: (token, customerId, customerName) => {
+   setSession: function (token, customerId, customerName) {
       const iat = Math.floor(Date.now() / 1000)
       const exp = Math.floor(Date.now() / 1000) + 3.5 * 60 * 60
-      const { password: pswd } = userAuth
-      const { number: num } = userAuth
       db.write({
-         password: pswd,
-         number: num,
+         password: this.password,
+         number: this.number,
          browserPath: userAuth.browserPath,
          session: {
             customerId,
