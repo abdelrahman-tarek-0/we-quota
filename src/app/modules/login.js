@@ -1,4 +1,3 @@
-const { login } = require('we-te-login')
 const { userAuth } = require('../../config/config')
 
 module.exports = async () => {
