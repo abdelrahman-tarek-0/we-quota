@@ -2,9 +2,10 @@ const { login } = require('we-te-login')
 const { userAuth } = require('../../config/config')
 
 module.exports = async () => {
-   let token,customerId,customerName;
-
-   let session = userAuth.getSession();
+   let token
+   let customerId
+   let customerName
+   const session = userAuth.getSession()
    if (
       session?.exp > Math.floor(Date.now() / 1000) &&
       session?.customerId &&
@@ -14,13 +15,13 @@ module.exports = async () => {
       token = session?.token
       customerId = session?.customerId
       customerName = session?.customerName
-   }else{
-      console.log("logging");
+   } else {
+      console.log('logging')
       const res = await login(userAuth.number, userAuth.password)
       token = res.token
       customerId = res.customerId
       customerName = res.customerName
-      userAuth.setSession(token,customerId,customerName)
+      userAuth.setSession(token, customerId, customerName)
    }
 
    const payload = {
