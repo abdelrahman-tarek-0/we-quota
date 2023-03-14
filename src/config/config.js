@@ -1,8 +1,7 @@
 const fs = require('fs')
 require('dotenv').config()
 
-const { login,loginWeb } = require('we-te-login')
-
+const { login, loginWeb } = require('we-te-login')
 
 const url = 'https://api-my.te.eg/api'
 const preTokenUrl = `${url}/user/generatetoken?channelId=WEB_APP`
@@ -38,22 +37,19 @@ const userAuth = {
          },
       })
    },
-   weLogin: async function () {
-      const data = await loginWeb()
 
+   login: async function (number, password) {
+      let data = {}
+      if (number && password) {
+         data = await login(userAuth.number, userAuth.password)
+      } else {
+         data = await loginWeb()
+      }
       this.number = data.number
       this.password = data.password
       this.setSession(data.token, data.customerId, data.customerName)
       return this
    },
-   login: async function (number,password){
-      const data = await login(userAuth.number, userAuth.password)
-
-      this.number = data.number
-      this.password = data.password
-      this.setSession(data.token, data.customerId, data.customerName)
-      return this
-   }
 }
 
 // your_password

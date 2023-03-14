@@ -12,7 +12,7 @@ const app = () =>
 
 if (!userAuth.number || !userAuth.password) {
    console.log('please login ')
-   userAuth.weLogin().then((user) => {
+   userAuth.login().then((user) => {
       console.log(`thanks ${user.getSession().customerName} for login in`)
    })
 } else {
