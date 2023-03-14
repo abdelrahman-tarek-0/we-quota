@@ -1,0 +1,12 @@
+{
+    "password": "",
+    "number": "",
+    "session": {
+       "customerId": "",
+       "customerName": "",
+       "iat": 1678819842,
+       "exp": 1678832449,
+       "token": ""
+    }
+ }
+//  remove the dump from the name
