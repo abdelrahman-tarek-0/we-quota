@@ -1,6 +1,8 @@
 const fs = require('fs')
 require('dotenv').config()
 
+const { loginWeb } = require('we-te-login')
+
 const url = 'https://api-my.te.eg/api'
 const preTokenUrl = `${url}/user/generatetoken?channelId=WEB_APP`
 const loginUrl = `${url}/user/login?channelId=WEB_APP`
@@ -22,7 +24,6 @@ const userAuth = {
       const exp = Math.floor(Date.now() / 1000) + 3.5 * 60 * 60
       const { password: pswd } = userAuth
       const { number: num } = userAuth
-      console.log(userAuth.browserPath)
       db.write({
          password: pswd,
          number: num,
@@ -35,6 +36,14 @@ const userAuth = {
             token,
          },
       })
+   },
+   weLogin: async function () {
+      const data = await loginWeb()
+
+      this.number = data.number
+      this.password = data.password
+      this.setSession(data.token, data.customerId, data.customerName)
+      return this
    },
 }
 
