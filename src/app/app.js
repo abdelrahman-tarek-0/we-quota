@@ -13,9 +13,12 @@ const app = () =>
 if (!userAuth.number || !userAuth.password) {
    console.log('please login ')
    userAuth.login().then((user) => {
-      console.log(`thanks ${user.getSession().customerName} for login in`)
+      console.log("your current session: ");
+      console.log(user.getSession());
       app()
    })
 } else {
+   console.log("your current session: ");
+   console.log(userAuth.getSession());   
    app()
 }
