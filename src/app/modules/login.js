@@ -1,15 +1,15 @@
-const userAuth = require('../../database/users.model')
+const userAuth = require('../model/users.model')
 const constructor = require('../utils/reqConstructor')
 
 module.exports = async () => {
-   const session = userAuth.checkSession()
-   const { token, customerId, customerName } =
-      session ||
-      (await userAuth.login(userAuth.number, userAuth.password)).getSession()
+   const { token, customerId, customerName } = userAuth.checkSession() || (await userAuth.login()).getSession();
 
    return {
       headers: constructor.headers(token),
-      payload: constructor.payload({ number: userAuth.number, customerId }),
+      payload: constructor.payload({
+         number: userAuth.getNumber(),
+         customerId,
+      }),
       customerName,
    }
 }

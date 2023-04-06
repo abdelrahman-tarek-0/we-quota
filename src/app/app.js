@@ -1,24 +1,14 @@
 const login = require('./modules/login')
 const mainPage = require('./modules/mainPage')
+const user = require('./model/users.model')
 
-const userAuth = require('../database/users.model')
-
-const app = () =>
-   login()
-      .then(mainPage)
-      .then((data) => {
-         console.log(data)
-      })
-
-if (!userAuth.number || !userAuth.password) {
-   console.log('please login ')
-   userAuth.login().then((user) => {
-      console.log("your current session: ");
-      console.log(user.getSession());
-      app()
-   })
-} else {
-   console.log("your current session: ");
-   console.log(userAuth.getSession());   
-   app()
+const weData = async () => {
+   const { headers, payload, customerName } = await login()
+   const data = await mainPage({ headers, payload, customerName })
+   
+   return data
 }
+
+// export weData to preform the necessary requests to get the data from we te api
+// export user to manipulate the user data stored in the db
+module.exports = {weData, user}
